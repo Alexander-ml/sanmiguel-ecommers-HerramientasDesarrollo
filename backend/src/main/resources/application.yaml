@@ -1,3 +1,35 @@
 spring:
   application:
     name: backend
+    # Nombre interno de la app aparece en logs y en Actuator.
+
+  jpa:
+    hibernate:
+      # NUNCA "update" (Guía de Base de Datos).
+      ddl-auto: validate
+    show-sql: false
+    # "true" mostraría cada consulta SQL generada en la consola
+
+  flyway:
+    enabled: true
+    out-of-order: true
+    # Para que no importe en qué orden se mergeen los Pull Requests de cada integrante
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # Expone SOLO /actuator/health y /actuator/info por HTTP.
+        include: health,info
+  endpoint:
+    health:
+      # Muestra el detalle por componente (db, diskSpace...) en la respuesta, no solo un "UP"/"DOWN" genérico
+      show-details: always
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+    # Estas dos rutas las genera solo springdoc a partir del código.
+    # /v3/api-docs es el contrato OpenAPI que el frontend usa para generar sus tipos TypeScript
