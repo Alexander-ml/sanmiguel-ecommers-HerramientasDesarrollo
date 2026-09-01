@@ -1,30 +1,43 @@
 services:
+  # Servicio 1: base de datos
   database:
     image: mysql:8.4
+    # Nombre fijo del contenedor, para reconocerlo fácil en docker compose ps/logs
     container_name: sanmiguel-database
+    # Si el contenedor se cae, Docker lo reinicia solo
     restart: unless-stopped
+    # Variables de entorno que MySQL usa para configurarse la primera vez que arranca
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    # Expone el puerto 3307 de tu máquina hacia el 3306 del contenedor
+    # así puedes conectarte desde un cliente MySQL en tu laptop si quieres
     ports:
       - "3307:3306"
+    # Los datos de MySQL se guardan en un volumen con nombre
+    # NO dentro del contenedor así sobreviven aunque borres y vuelvas a crear el contenedor
     volumes:
       - sanmiguel-db-data:/var/lib/mysql
+    # Prueba real de que MySQL ya acepta conexiones, no solo que el proceso existe.
+    # mysqladmin ping intenta conectarse de verdad.
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
+      interval: 10s      # cada cuánto reintenta la prueba
+      timeout: 5s        # cuánto espera antes de considerar que falló ese intento
+      retries: 5         # cuántos intentos fallidos seguidos hasta declararlo "unhealthy"
+      start_period: 30s  # tiempo de gracia inicial antes de empezar a contar fallos
 
+  # Servicio 2: backend
   backend:
     build:
+      # Carpeta donde está el Dockerfile del backend, relativa a infra/
       context: ../backend
       dockerfile: Dockerfile
     container_name: sanmiguel-backend
     restart: unless-stopped
+    # Variables que Spring Boot lee para saber a qué base de datos conectarse.
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/${MYSQL_DATABASE}
@@ -32,16 +45,19 @@ services:
       SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "8080:8080"
+    # No arranca hasta que "database" esté realmente healthy
     depends_on:
       database:
         condition: service_healthy
+    # Su propia prueba de salud: pega contra su endpoint de Actuator
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:8080/actuator/health || exit 1"]
       interval: 15s
       timeout: 5s
       retries: 5
-      start_period: 40s
+      start_period: 40s   # más tiempo que la base, porque Java + Spring tarda más en arrancar
 
+  # Servicio 3: frontend
   frontend:
     build:
       context: ../frontend
@@ -50,9 +66,11 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
+    # No arranca hasta que el backend esté healthy
     depends_on:
       backend:
         condition: service_healthy
 
+# Declaración del volumen con nombre que usa "database" para guardar los datos de MySQL
 volumes:
   sanmiguel-db-data:
