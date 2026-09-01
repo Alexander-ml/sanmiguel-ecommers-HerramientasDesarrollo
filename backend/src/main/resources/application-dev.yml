@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    # cuando corres el backend desde IntelliJ, fuera de Docker, mientras MySQL sí sigue corriendo en Docker
+    url: jdbc:mysql://localhost:3306/${MYSQL_DATABASE:sanmiguel}
+    username: ${MYSQL_USER:sanmiguel_app}
+    password: ${MYSQL_PASSWORD:changeme}
+  flyway:
+    # Acá sí entran los datos de prueba (lo de db/seed-dev de la Guía de
+    # Base de Datos) — solo en este perfil, nunca en el de Docker/producción
+    locations: classpath:db/migration,classpath:db/seed-dev
+
+logging:
+  level:
+    com.sanmiguel: DEBUG
