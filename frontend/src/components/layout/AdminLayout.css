@@ -1,0 +1,20 @@
+.sm-admin-shell {
+  min-height: 100vh;
+  background-color: var(--sm-bone);
+}
+
+.sm-admin-shell__body {
+  display: flex;
+}
+
+.sm-admin-shell__content {
+  flex: 1;
+  min-width: 0;
+  padding: var(--sm-space-5);
+}
+
+@media (max-width: 575.98px) {
+  .sm-admin-shell__content {
+    padding: var(--sm-space-4) var(--sm-space-3);
+  }
+}

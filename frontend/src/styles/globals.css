@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--sm-font-ui);
+  color: var(--sm-ink);
+  background-color: var(--sm-bone);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sm-font-display {
+  font-family: var(--sm-font-display);
+  letter-spacing: -0.02em;
+}
+
+.sm-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+a {
+  color: var(--sm-primary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--sm-primary-hover);
+}
+
+/* Foco visible consistente en toda la app */
+:focus-visible {
+  outline: 2px solid var(--sm-primary);
+  outline-offset: 2px;
+}
+
+.sm-scroll-x {
+  overflow-x: auto;
+}
+
+/* Scrollbars estilizados sutiles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sm-border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sm-ink-muted);
+}
