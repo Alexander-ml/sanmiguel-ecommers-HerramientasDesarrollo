@@ -26,6 +26,10 @@ management:
       # Muestra el detalle por componente (db, diskSpace...) en la respuesta, no solo un "UP"/"DOWN" genérico
       show-details: always
 
+security:
+  max-failed-attempts: 5
+  lockout-minutes: 15
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
