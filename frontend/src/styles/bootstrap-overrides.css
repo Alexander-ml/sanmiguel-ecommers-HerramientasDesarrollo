@@ -1,0 +1,89 @@
+/**
+ * Redirige las variables de Bootstrap 5 a los tokens modernos de San Miguel.
+ * Import order (ver main.tsx): bootstrap.css -> variables.css -> bootstrap-overrides.css -> globals.css
+ */
+:root {
+  --bs-primary: var(--sm-primary);
+  --bs-primary-rgb: 37, 99, 235;
+  --bs-body-color: var(--sm-ink);
+  --bs-body-bg: var(--sm-bone);
+  --bs-border-color: var(--sm-border);
+  --bs-border-radius: var(--sm-radius-sm);
+  --bs-border-radius-lg: var(--sm-radius-md);
+  --bs-border-radius-sm: var(--sm-radius-sm);
+  --bs-body-font-family: var(--sm-font-ui);
+  --bs-success: var(--sm-success);
+  --bs-warning: var(--sm-warning);
+  --bs-danger: var(--sm-danger);
+  --bs-info: var(--sm-info);
+  --bs-secondary: var(--sm-neutral);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--sm-primary);
+  --bs-btn-border-color: var(--sm-primary);
+  --bs-btn-hover-bg: var(--sm-primary-hover);
+  --bs-btn-hover-border-color: var(--sm-primary-hover);
+  --bs-btn-active-bg: var(--sm-primary-dark);
+  --bs-btn-active-border-color: var(--sm-primary-dark);
+  --bs-btn-focus-shadow-rgb: 37, 99, 235;
+  font-weight: 500;
+  box-shadow: 0 1px 2px 0 rgb(37 99 235 / 0.15);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--sm-primary);
+  --bs-btn-border-color: var(--sm-primary);
+  --bs-btn-hover-bg: var(--sm-primary);
+  --bs-btn-hover-border-color: var(--sm-primary);
+  --bs-btn-active-bg: var(--sm-primary-dark);
+  --bs-btn-active-border-color: var(--sm-primary-dark);
+  font-weight: 500;
+}
+
+.card {
+  background-color: var(--sm-surface);
+  border-radius: var(--sm-radius-md);
+  border: 1px solid var(--sm-border);
+  box-shadow: var(--sm-shadow-sm);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.table {
+  --bs-table-hover-bg: var(--sm-primary-tint);
+  border-color: var(--sm-border);
+}
+
+.table > thead th {
+  font-size: var(--sm-text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: var(--sm-ink-soft);
+  background-color: var(--sm-bone);
+  border-bottom: 1px solid var(--sm-border);
+  padding: 10px 16px;
+}
+
+.table > tbody td {
+  padding: 12px 16px;
+  vertical-align: middle;
+}
+
+.form-control,
+.form-select {
+  border-color: var(--sm-border);
+  border-radius: var(--sm-radius-sm);
+  font-size: var(--sm-text-sm);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--sm-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.badge {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}

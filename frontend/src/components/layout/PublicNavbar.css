@@ -1,0 +1,124 @@
+/* Header Contenedor Principal */
+.sm-public-header {
+  z-index: 1040;
+  transition: all 0.2s ease;
+}
+
+/* 1. Barra de Colaborador (Personal Interno) */
+.sm-staff-bar {
+  background: linear-gradient(90deg, #0b132b 0%, #172554 100%);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.35);
+  font-family: var(--sm-font-ui);
+}
+
+
+
+/* 2. Barra Superior de Anuncios y Utilidades */
+.sm-utility-bar {
+  background-color: #090e1a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+.sm-utility-bar a.hover-white:hover {
+  color: #ffffff !important;
+}
+
+/* 3. Navbar Comercial Principal */
+.sm-public-nav {
+  background: rgba(15, 23, 42, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-block: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+/* Brand Logotipo */
+.sm-brand-title {
+  color: #ffffff;
+  font-family: var(--sm-font-display);
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.sm-brand-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--sm-primary);
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.sm-brand-subtitle {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #93c5fd;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* Enlaces de Navegación */
+.sm-public-nav .nav-link {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.sm-public-nav .nav-link:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.sm-public-nav .nav-link.active {
+  color: #ffffff;
+  background-color: rgba(37, 99, 235, 0.18);
+  font-weight: 600;
+}
+
+/* Buscador de Cabecera */
+.sm-search-form {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: 2px 4px;
+  transition: all 0.2s ease;
+  min-width: 220px;
+}
+
+.sm-search-form:focus-within {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--sm-primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25);
+}
+
+.sm-search-form input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.82rem;
+}
+
+/* Botón Carrito */
+.sm-cart-btn {
+  background-color: var(--sm-primary);
+  border-color: var(--sm-primary);
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 6px 14px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sm-cart-btn:hover {
+  background-color: var(--sm-primary-hover);
+  border-color: var(--sm-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}

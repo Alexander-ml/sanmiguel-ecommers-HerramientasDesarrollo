@@ -1,0 +1,242 @@
+/**
+ * Mock data para el módulo de Clientes.
+ * Entidades: Clientes registrados, Direcciones, Consentimientos (Ley 29733) y Solicitudes ARCO.
+ */
+import type {
+  Cliente,
+  Direccion,
+  ConsentimientoDatos,
+  SolicitudARCO,
+} from '../../features/clientes/types';
+
+export let DIRECCIONES: Direccion[] = [
+  {
+    id: 1,
+    clienteId: 4, // Junior Llontop (demo)
+    alias: 'Casa Principal',
+    departamento: 'Lima',
+    provincia: 'Lima',
+    distrito: 'San Miguel',
+    direccionPostal: 'Av. La Marina 2305, Dpto. 402',
+    referencia: 'Frente a Plaza San Miguel',
+    esPredeterminada: true,
+  },
+  {
+    id: 2,
+    clienteId: 4,
+    alias: 'Oficina Miraflores',
+    departamento: 'Lima',
+    provincia: 'Lima',
+    distrito: 'Miraflores',
+    direccionPostal: 'Av. José Pardo 601, Piso 8',
+    referencia: 'Cerca al Óvalo de Miraflores',
+    esPredeterminada: false,
+  },
+  {
+    id: 3,
+    clienteId: 101,
+    alias: 'Domicilio Fiscal',
+    departamento: 'Lima',
+    provincia: 'Lima',
+    distrito: 'Santiago de Surco',
+    direccionPostal: 'Calle Las Begonias 145',
+    referencia: 'A espaldas de la Embajada',
+    esPredeterminada: true,
+  },
+  {
+    id: 4,
+    clienteId: 102,
+    alias: 'Casa de Playa',
+    departamento: 'Lima',
+    provincia: 'Cañete',
+    distrito: 'Asia',
+    direccionPostal: 'Condominio El Golf, Mz. B Lote 4',
+    referencia: 'Km. 97.5 Panamericana Sur',
+    esPredeterminada: true,
+  },
+];
+
+export let CONSENTIMIENTOS: ConsentimientoDatos[] = [
+  {
+    id: 1,
+    clienteId: 4,
+    email: 'cliente@sanmiguel.pe',
+    pedidoId: null,
+    fecha: '2024-05-10T14:30:00',
+    versionPolitica: 'v2.1 - 2024',
+    finalidad: 'Tratamiento de datos personales para compras, facturación y despacho conforme a Ley 29733.',
+    estado: 'OTORGADO',
+  },
+  {
+    id: 2,
+    clienteId: 101,
+    email: 'ana.salazar@corporativo.pe',
+    pedidoId: null,
+    fecha: '2024-01-18T09:15:00',
+    versionPolitica: 'v2.0 - 2024',
+    finalidad: 'Tratamiento de datos personales para compras, facturación y despacho conforme a Ley 29733.',
+    estado: 'OTORGADO',
+  },
+  {
+    id: 3,
+    clienteId: null, // Invitado
+    email: 'lfernandez@gmail.com',
+    pedidoId: 2,
+    fecha: '2025-02-14T15:05:00',
+    versionPolitica: 'v2.1 - 2024',
+    finalidad: 'Tratamiento temporal de datos de contacto y entrega de pedido de invitado (Ley 29733).',
+    estado: 'OTORGADO',
+  },
+  {
+    id: 4,
+    clienteId: 103,
+    email: 'mrivas@outlook.com',
+    pedidoId: null,
+    fecha: '2024-02-11T16:00:00',
+    versionPolitica: 'v2.0 - 2024',
+    finalidad: 'Tratamiento de datos personales para compras y facturación.',
+    estado: 'REVOCADO',
+  },
+];
+
+export let SOLICITUDES_ARCO: SolicitudARCO[] = [
+  {
+    id: 1,
+    clienteId: 103,
+    clienteNombre: 'Marcos Rivas Espinoza',
+    clienteEmail: 'mrivas@outlook.com',
+    tipoDerecho: 'CANCELACION',
+    detalle: 'Solicito la cancelación y eliminación de mis datos de contacto del sistema.',
+    estado: 'PENDIENTE',
+    fechaSolicitud: '2025-02-28T10:00:00',
+  },
+  {
+    id: 2,
+    clienteId: 104,
+    clienteNombre: 'Diana Vega Romero',
+    clienteEmail: 'dvega@gmail.com',
+    tipoDerecho: 'RECTIFICACION',
+    detalle: 'Corregir el número de teléfono celular y actualizar el apellido materno.',
+    estado: 'ATENDIDA',
+    fechaSolicitud: '2025-01-15T11:20:00',
+    fechaRespuesta: '2025-01-16T17:00:00',
+    respuestaAdmin: 'Se procedió a actualizar los datos solicitados en el perfil de usuario.',
+    usuarioAtendioId: 1,
+    usuarioAtendioNombre: 'Ana Flores (Administrador)',
+  },
+];
+
+export let CLIENTES: Cliente[] = [
+  {
+    id: 4, // Cuenta Demo
+    nombres: 'Junior',
+    apellidos: 'Llontop',
+    email: 'cliente@sanmiguel.pe',
+    telefono: '987654321',
+    tipoDocumento: 'DNI',
+    numeroDocumento: '45892314',
+    estado: 'activo',
+    fechaRegistro: '2024-05-10T14:30:00',
+    totalGastado: 509.00,
+    cantidadPedidos: 2,
+    ultimaCompraFecha: '2025-02-10T10:35:00',
+    segmentoRFM: 'FRECUENTE',
+    direcciones: [DIRECCIONES[0], DIRECCIONES[1]],
+    consentimientos: [CONSENTIMIENTOS[0]],
+  },
+  {
+    id: 101,
+    nombres: 'Ana Patricia',
+    apellidos: 'Salazar Montalvo',
+    email: 'ana.salazar@corporativo.pe',
+    telefono: '998877665',
+    tipoDocumento: 'DNI',
+    numeroDocumento: '40123456',
+    estado: 'activo',
+    fechaRegistro: '2024-01-18T09:15:00',
+    totalGastado: 3450.00,
+    cantidadPedidos: 8,
+    ultimaCompraFecha: '2025-03-01T16:00:00',
+    segmentoRFM: 'VIP',
+    direcciones: [DIRECCIONES[2]],
+    consentimientos: [CONSENTIMIENTOS[1]],
+  },
+  {
+    id: 102,
+    nombres: 'Guillermo',
+    apellidos: 'Alzamora Ruiz',
+    email: 'galzamora@speedy.com.pe',
+    telefono: '945612378',
+    tipoDocumento: 'RUC',
+    numeroDocumento: '10412345678',
+    estado: 'activo',
+    fechaRegistro: '2024-03-22T10:45:00',
+    totalGastado: 1890.00,
+    cantidadPedidos: 5,
+    ultimaCompraFecha: '2025-02-20T12:00:00',
+    segmentoRFM: 'VIP',
+    direcciones: [DIRECCIONES[3]],
+    consentimientos: [],
+  },
+  {
+    id: 103,
+    nombres: 'Marcos',
+    apellidos: 'Rivas Espinoza',
+    email: 'mrivas@outlook.com',
+    telefono: '912345600',
+    tipoDocumento: 'DNI',
+    numeroDocumento: '43908123',
+    estado: 'activo',
+    fechaRegistro: '2024-02-11T16:00:00',
+    totalGastado: 1200.00,
+    cantidadPedidos: 3,
+    ultimaCompraFecha: '2024-08-15T18:00:00',
+    segmentoRFM: 'EN_RIESGO',
+    direcciones: [],
+    consentimientos: [CONSENTIMIENTOS[3]],
+  },
+  {
+    id: 104,
+    nombres: 'Diana',
+    apellidos: 'Vega Romero',
+    email: 'dvega@gmail.com',
+    telefono: '978901234',
+    tipoDocumento: 'DNI',
+    numeroDocumento: '47654321',
+    estado: 'activo',
+    fechaRegistro: '2023-11-05T08:30:00',
+    totalGastado: 180.00,
+    cantidadPedidos: 1,
+    ultimaCompraFecha: '2023-11-05T09:00:00',
+    segmentoRFM: 'INACTIVO',
+    direcciones: [],
+    consentimientos: [],
+  },
+  {
+    id: 105,
+    nombres: 'Roberto',
+    apellidos: 'Gómez Cárdenas',
+    email: 'rgomez@empresa.com',
+    telefono: '965432198',
+    tipoDocumento: 'CE',
+    numeroDocumento: '001298456',
+    estado: 'activo',
+    fechaRegistro: '2025-02-28T14:00:00',
+    totalGastado: 240.00,
+    cantidadPedidos: 1,
+    ultimaCompraFecha: '2025-02-28T14:30:00',
+    segmentoRFM: 'NUEVO',
+    direcciones: [],
+    consentimientos: [],
+  },
+];
+
+let _nextClienteId = 106;
+let _nextDireccionId = DIRECCIONES.length + 1;
+let _nextConsentimientoId = CONSENTIMIENTOS.length + 1;
+let _nextArcoId = SOLICITUDES_ARCO.length + 1;
+
+export function nextClienteId() { return _nextClienteId++; }
+export function nextDireccionId() { return _nextDireccionId++; }
+export function nextConsentimientoId() { return _nextConsentimientoId++; }
+export function nextArcoId() { return _nextArcoId++; }

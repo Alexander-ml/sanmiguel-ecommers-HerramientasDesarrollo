@@ -1,0 +1,74 @@
+/* DataTable — tabla administrativa moderna */
+
+.table-responsive {
+  border-radius: var(--sm-radius-md);
+  border: var(--sm-border-width) solid var(--sm-border);
+  background-color: var(--sm-surface);
+  box-shadow: var(--sm-shadow-sm);
+  overflow: hidden;
+}
+
+.sm-data-table {
+  font-size: var(--sm-text-sm);
+  font-family: var(--sm-font-ui);
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.sm-data-table thead th {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--sm-ink-soft);
+  border-bottom: 1px solid var(--sm-border);
+  padding: 12px 16px;
+  white-space: nowrap;
+  background-color: #f8fafc;
+}
+
+.sm-data-table tbody td {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--sm-border);
+  color: var(--sm-ink);
+  vertical-align: middle;
+  background-color: var(--sm-surface);
+  transition: background-color 0.12s ease;
+}
+
+.sm-data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.sm-data-table tbody tr:hover td {
+  background-color: #f8fafc;
+}
+
+/* Botón de acciones ⋮ */
+.sm-btn-acciones {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--sm-ink-soft);
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--sm-radius-sm);
+  line-height: 1;
+  transition: all 0.15s ease;
+}
+
+.sm-btn-acciones:hover,
+.sm-btn-acciones:focus-visible {
+  color: var(--sm-primary);
+  background-color: var(--sm-primary-tint);
+  border-color: var(--sm-primary-subtle);
+}
+
+/* Alineación numérica en columnas de cantidades/precios */
+.sm-data-table .text-end {
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,43 @@
+.sm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sm-space-1);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: var(--sm-text-xs);
+  font-weight: 600;
+  line-height: 1.35;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+}
+
+.sm-badge--success {
+  color: #065f46;
+  background-color: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+.sm-badge--warning {
+  color: #92400e;
+  background-color: #fffbeb;
+  border-color: #fde68a;
+}
+
+.sm-badge--danger {
+  color: #991b1b;
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
+
+.sm-badge--neutral {
+  color: #334155;
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.sm-badge--info {
+  color: #0369a1;
+  background-color: #f0f9ff;
+  border-color: #bae6fd;
+}
