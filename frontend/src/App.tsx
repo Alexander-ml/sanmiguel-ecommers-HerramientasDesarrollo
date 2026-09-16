@@ -1,11 +1,12 @@
-import './App.css'
+import { QueryClientProvider } from '@tanstack/react-query';
+import { RouterProvider } from 'react-router-dom';
+import { queryClient } from './lib/queryClient';
+import { router } from './router/routes';
 
-function App() {
+export default function App() {
   return (
-    <>
-      <h1>Hola</h1>
-    </>
-  )
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 }
-
-export default App
