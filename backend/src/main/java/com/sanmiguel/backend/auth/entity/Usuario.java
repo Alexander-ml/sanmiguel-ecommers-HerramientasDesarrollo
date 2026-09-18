@@ -12,6 +12,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 
@@ -37,15 +40,12 @@ public class Usuario {
     private Rol rol;
 
     @Convert(converter = EstadoActivoInactivoConverter.class)
-    @Column(
-            name = "estado",
-            nullable = false,
-            columnDefinition = "ENUM('activo','inactivo')"
-    )
+    @Column(name = "estado", nullable = false, columnDefinition = "ENUM('activo','inactivo')")
     private EstadoActivoInactivo estado;
 
+    @JdbcTypeCode(SqlTypes.TINYINT)
     @Column(name = "intentos_fallidos_consecutivos", nullable = false)
-    private Byte intentosFallidosConsecutivos;
+    private Integer intentosFallidosConsecutivos;
 
     @Column(name = "bloqueado_hasta")
     private LocalDateTime bloqueadoHasta;
@@ -56,16 +56,14 @@ public class Usuario {
     @Column(name = "fecha_baja")
     private LocalDateTime fechaBaja;
 
+    @Version
+    @Column(name = "version", nullable = false)
+    private Long version;
+
     protected Usuario() {
-        // Constructor requerido por JPA
     }
 
-    public Usuario(
-            String nombre,
-            String correo,
-            String contrasenaHash,
-            Rol rol
-    ) {
+    public Usuario(String nombre, String correo, String contrasenaHash, Rol rol) {
         this.nombre = nombre;
         this.correo = correo;
         this.contrasenaHash = contrasenaHash;
@@ -75,52 +73,20 @@ public class Usuario {
         this.fechaCreacion = LocalDateTime.now();
     }
 
-    // --- Getters ---
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public String getContrasenaHash() {
-        return contrasenaHash;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public EstadoActivoInactivo getEstado() {
-        return estado;
-    }
-
-    public Byte getIntentosFallidosConsecutivos() {
-        return intentosFallidosConsecutivos;
-    }
-
-    public LocalDateTime getBloqueadoHasta() {
-        return bloqueadoHasta;
-    }
-
-    public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public LocalDateTime getFechaBaja() {
-        return fechaBaja;
-    }
-
-    // --- Comportamiento ---
+    public Long getId() { return id; }
+    public String getNombre() { return nombre; }
+    public String getCorreo() { return correo; }
+    public String getContrasenaHash() { return contrasenaHash; }
+    public Rol getRol() { return rol; }
+    public EstadoActivoInactivo getEstado() { return estado; }
+    public Integer getIntentosFallidosConsecutivos() { return intentosFallidosConsecutivos; }
+    public LocalDateTime getBloqueadoHasta() { return bloqueadoHasta; }
+    public LocalDateTime getFechaCreacion() { return fechaCreacion; }
+    public LocalDateTime getFechaBaja() { return fechaBaja; }
+    public Long getVersion() { return version; }
 
     public void registrarIntentoFallido() {
-        this.intentosFallidosConsecutivos++;
+        this.intentosFallidosConsecutivos = this.intentosFallidosConsecutivos + 1;
     }
 
     public void bloquearHasta(LocalDateTime hasta) {
@@ -133,8 +99,7 @@ public class Usuario {
     }
 
     public boolean estaBloqueado() {
-        return bloqueadoHasta != null
-                && bloqueadoHasta.isAfter(LocalDateTime.now());
+        return bloqueadoHasta != null && bloqueadoHasta.isAfter(LocalDateTime.now());
     }
 
     public boolean estaActivo() {

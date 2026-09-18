@@ -37,3 +37,11 @@ springdoc:
     path: /v3/api-docs
     # Estas dos rutas las genera solo springdoc a partir del código.
     # /v3/api-docs es el contrato OpenAPI que el frontend usa para generar sus tipos TypeScript
+
+app:
+  refresh-token:
+    expiration-days: 7
+  rate-limit:
+    login:
+      max-intentos: 10
+      ventana-minutos: 15

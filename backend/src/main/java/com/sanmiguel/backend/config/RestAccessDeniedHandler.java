@@ -21,7 +21,7 @@ public class RestAccessDeniedHandler implements AccessDeniedHandler {
                        AccessDeniedException accessDeniedException) throws IOException {
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        response.getWriter().write(
-                objectMapper.writeValueAsString(ApiResponse.error("No tienes permisos para esta acción")));
+        response.getWriter().write(objectMapper.writeValueAsString(
+                ApiResponse.error("No tienes permisos para esta acción", "ACCESS_DENIED")));
     }
 }

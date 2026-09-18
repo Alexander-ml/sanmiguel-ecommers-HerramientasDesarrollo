@@ -12,34 +12,37 @@ public class ApiResponse<T> {
     private final String message;
     private final T data;
     private final List<String> errors;
+    private final String errorCode;
     private final Instant timestamp = Instant.now();
 
-    private ApiResponse(boolean success, String message, T data, List<String> errors) {
+    private ApiResponse(boolean success, String message, T data, List<String> errors, String errorCode) {
         this.success = success;
         this.message = message;
         this.data = data;
         this.errors = errors;
+        this.errorCode = errorCode;
     }
 
     public static <T> ApiResponse<T> success(T data) {
-        return new ApiResponse<>(true, "Operación exitosa", data, null);
+        return new ApiResponse<>(true, "Operación exitosa", data, null, null);
     }
 
     public static <T> ApiResponse<T> success(T data, String message) {
-        return new ApiResponse<>(true, message, data, null);
+        return new ApiResponse<>(true, message, data, null, null);
     }
 
-    public static <T> ApiResponse<T> error(String message) {
-        return new ApiResponse<>(false, message, null, null);
+    public static <T> ApiResponse<T> error(String message, String errorCode) {
+        return new ApiResponse<>(false, message, null, null, errorCode);
     }
 
-    public static <T> ApiResponse<T> error(String message, List<String> errors) {
-        return new ApiResponse<>(false, message, null, errors);
+    public static <T> ApiResponse<T> error(String message, List<String> errors, String errorCode) {
+        return new ApiResponse<>(false, message, null, errors, errorCode);
     }
 
     public boolean isSuccess() { return success; }
     public String getMessage() { return message; }
     public T getData() { return data; }
     public List<String> getErrors() { return errors; }
+    public String getErrorCode() { return errorCode; }
     public Instant getTimestamp() { return timestamp; }
 }

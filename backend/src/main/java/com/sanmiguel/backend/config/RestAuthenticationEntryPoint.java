@@ -21,7 +21,7 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
                          AuthenticationException authException) throws IOException {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        response.getWriter().write(
-                objectMapper.writeValueAsString(ApiResponse.error("No autenticado, inicia sesión para continuar")));
+        response.getWriter().write(objectMapper.writeValueAsString(
+                ApiResponse.error("No autenticado, inicia sesión para continuar", "UNAUTHENTICATED")));
     }
 }

@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "roles")
@@ -13,24 +15,19 @@ public class Rol {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Byte id;
+    @JdbcTypeCode(SqlTypes.TINYINT)
+    private Integer id;
 
     @Column(name = "nombre", nullable = false, unique = true, length = 50)
     private String nombre;
 
     protected Rol() {
-        // JPA
     }
 
-    public Rol(Byte id) {
+    public Rol(Integer id) {
         this.id = id;
     }
 
-    public Byte getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
+    public Integer getId() { return id; }
+    public String getNombre() { return nombre; }
 }

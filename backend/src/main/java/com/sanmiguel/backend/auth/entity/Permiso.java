@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "permisos")
@@ -13,7 +15,8 @@ public class Permiso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Short id;
+    @JdbcTypeCode(SqlTypes.SMALLINT)
+    private Integer id;
 
     @Column(name = "modulo", nullable = false, length = 50)
     private String modulo;
@@ -25,22 +28,10 @@ public class Permiso {
     private String descripcion;
 
     protected Permiso() {
-        // JPA
     }
 
-    public Short getId() {
-        return id;
-    }
-
-    public String getModulo() {
-        return modulo;
-    }
-
-    public String getAccion() {
-        return accion;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
+    public Integer getId() { return id; }
+    public String getModulo() { return modulo; }
+    public String getAccion() { return accion; }
+    public String getDescripcion() { return descripcion; }
 }
